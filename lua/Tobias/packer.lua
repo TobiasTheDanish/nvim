@@ -11,14 +11,17 @@ return require('packer').startup(function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use({
+	use 'neanias/everforest-nvim'
+	use 'sainnhe/everforest'
+	--[[use({
 		'folke/tokyonight.nvim',
 		config = function()
 			vim.cmd('colorscheme tokyonight-moon')
 		end
-	})
-	use({ 
-		'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}
+	})--]]
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		{run = ':TSUpdate'},
 	})
 	use 'vim-airline/vim-airline'
 	use 'mbbill/undotree'
@@ -43,5 +46,19 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 			{'rafamadriz/friendly-snippets'},
 		}
+	}
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	}
+	use("petertriho/nvim-scrollbar")
+	use("folke/twilight.nvim")
+
+	use {
+		'nvim-tree/nvim-tree.lua',
+		requires = {
+			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+		},
+		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
 end)
