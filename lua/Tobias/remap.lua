@@ -24,3 +24,5 @@ keymap('v', '<A-j>', ':m \'>+1<CR>gv=gv')
 keymap('v', '<A-k>', ':m \'<-2<CR>gv=gv')
 keymap('n', '<leader>c', 'yyp')
 keymap('x', '<leader>p', '"_dp')
+
+keymap('n', '<leader>x', '<cmd>!chmod +x %<cr>', {silent = true})
