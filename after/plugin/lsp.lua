@@ -3,13 +3,8 @@ vim.opt.signcolumn = 'yes' -- Reserve space for diagnostic icons
 local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-})
-
 lsp.on_attach(
-function(client, bufnr) 
+function(client, bufnr)
 	local opts = {buffer = bufnr, remap = false}
 
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)

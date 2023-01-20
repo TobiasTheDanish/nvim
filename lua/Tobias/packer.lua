@@ -11,14 +11,6 @@ return require('packer').startup(function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use 'neanias/everforest-nvim'
-	use 'sainnhe/everforest'
-	--[[use({
-		'folke/tokyonight.nvim',
-		config = function()
-			vim.cmd('colorscheme tokyonight-moon')
-		end
-	})--]]
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		{run = ':TSUpdate'},
@@ -61,4 +53,5 @@ return require('packer').startup(function(use)
 		},
 		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
+	use 'folke/tokyonight.nvim'
 end)
