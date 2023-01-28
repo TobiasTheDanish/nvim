@@ -11,10 +11,10 @@ return require('packer').startup(function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use({
-		"nvim-treesitter/nvim-treesitter",
+	use {
+		'nvim-treesitter/nvim-treesitter',
 		{run = ':TSUpdate'},
-	})
+	}
 	use 'vim-airline/vim-airline'
 	use 'mbbill/undotree'
 	use 'tpope/vim-fugitive'
@@ -45,13 +45,7 @@ return require('packer').startup(function(use)
 	}
 	use("petertriho/nvim-scrollbar")
 	use("folke/twilight.nvim")
-
-	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icons
-		},
-		tag = 'nightly' -- optional, updated every week. (see issue #1193)
-	}
 	use 'folke/tokyonight.nvim'
+	use 'kyazdani42/nvim-web-devicons'
+	use 'nvim-lualine/lualine.nvim'
 end)
