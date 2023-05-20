@@ -7,7 +7,7 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		'nvim-telescope/telescope.nvim', branch = '0.1.x',
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
@@ -48,4 +48,6 @@ return require('packer').startup(function(use)
 	use 'folke/tokyonight.nvim'
 	use 'kyazdani42/nvim-web-devicons'
 	use 'nvim-lualine/lualine.nvim'
+	use 'morhetz/gruvbox'
+	use 'ziglang/zig.vim'
 end)

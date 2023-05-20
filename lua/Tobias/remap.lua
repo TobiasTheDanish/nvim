@@ -10,8 +10,8 @@ end
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', {})
 vim.keymap.set('n', '<C-u>', '<C-u>zz', {})
-keymap("n", "<leader>pv", ":Ex<enter>")
-keymap('n', '<leader>u', ':UndotreeToggle')
+keymap("n", "<leader>pv", ":Ex<cr>")
+keymap('n', '<leader>u', ':UndotreeToggle<cr>')
 
 keymap('n', '<leader>J', '<C-w>j')
 keymap('n', '<leader>K', '<C-w>k')
@@ -26,3 +26,4 @@ keymap('n', '<leader>c', 'yyp')
 keymap('x', '<leader>p', '"_dp')
 
 keymap('n', '<leader>x', '<cmd>!chmod +x %<cr>', {silent = true})
+
