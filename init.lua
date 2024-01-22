@@ -316,6 +316,12 @@ vim.o.guicursor = 'n-c-v-i:block-blinkwait300-blinkon200-blinkoff150'
 
 vim.wo.scrolloff = 15
 
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.smartindent = true
+vim.o.autoindent = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
