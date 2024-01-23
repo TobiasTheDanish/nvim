@@ -69,6 +69,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
+  'mbbill/undotree',
+
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -355,6 +357,9 @@ vim.keymap.set('n', '<leader>-', '<C-w>s')
 vim.keymap.set('v', '<A-j>', ':m \'>+1<CR>gv=gv')
 vim.keymap.set('v', '<A-k>', ':m \'<-2<CR>gv=gv')
 
+-- Undotree keymaps
+vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle, { desc = "[T]oggle undotree" })
+vim.keymap.set('n', '<leader>uf', vim.cmd.UndotreeFocus, { desc = "[F]ocus undotree" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -576,6 +581,7 @@ require('which-key').register {
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+  ['<leader>u'] = { name = '[U]ndotree', _ = 'which_key_ignore' },
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
