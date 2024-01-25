@@ -78,6 +78,22 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Nvim-tree:
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      require("nvim-tree").setup {}
+    end,
+  },
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -361,6 +377,10 @@ vim.keymap.set('v', '<A-k>', ':m \'<-2<CR>gv=gv')
 vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle, { desc = "[T]oggle undotree" })
 vim.keymap.set('n', '<leader>uf', vim.cmd.UndotreeFocus, { desc = "[F]ocus undotree" })
 
+-- Nvimtree keymaps
+vim.keymap.set('n', '<leader>nt', vim.cmd.NvimTreeToggle, { desc = "[T]oggle [N]vimTree" })
+vim.keymap.set('n', '<leader>nf', vim.cmd.NvimTreeFocus, { desc = "[F]ocus [N]vimTree" })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -582,6 +602,7 @@ require('which-key').register {
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
   ['<leader>u'] = { name = '[U]ndotree', _ = 'which_key_ignore' },
+  ['<leader>n'] = { name = '[N]vimtree', _ = 'which_key_ignore' },
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
