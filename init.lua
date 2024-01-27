@@ -374,8 +374,9 @@ vim.keymap.set('v', '<A-j>', ':m \'>+1<CR>gv=gv')
 vim.keymap.set('v', '<A-k>', ':m \'<-2<CR>gv=gv')
 
 -- Vim Fugitive keymaps
-vim.keymap.set('n', '<leader>gt', vim.cmd.Git, { desc = "[T]oggle git tree" })
+vim.keymap.set('n', '<leader>gt', vim.cmd.Git, { desc = "Open [G]it [T]ree" })
 vim.keymap.set('n', '<leader>gc', function() vim.cmd.Git("commit") end, { desc = "[C]ommit staged changes" })
+vim.keymap.set('n', '<leader>gp', function() vim.cmd.Git("push") end, { desc = "[P]ush commited changes" })
 
 -- Undotree keymaps
 vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle, { desc = "[T]oggle undotree" })
