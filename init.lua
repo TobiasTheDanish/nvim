@@ -359,7 +359,7 @@ vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Open [D]i
 -- Custom remaps
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
-vim.keymap.set('n', '<leader>pv', ':Ex<cr>', { silent = true })
+-- vim.keymap.set('n', '<leader>pv', ':Ex<cr>', { silent = true })
 
 -- Window navigation/management
 vim.keymap.set('n', '<leader>J', '<C-w>j')
@@ -372,6 +372,10 @@ vim.keymap.set('n', '<leader>-', '<C-w>s')
 -- Move highlighted lines
 vim.keymap.set('v', '<A-j>', ':m \'>+1<CR>gv=gv')
 vim.keymap.set('v', '<A-k>', ':m \'<-2<CR>gv=gv')
+
+-- Vim Fugitive keymaps
+vim.keymap.set('n', '<leader>gt', vim.cmd.Git, { desc = "[T]oggle git tree" })
+vim.keymap.set('n', '<leader>gc', function() vim.cmd.Git("commit") end, { desc = "[C]ommit staged changes" })
 
 -- Undotree keymaps
 vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle, { desc = "[T]oggle undotree" })
