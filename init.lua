@@ -409,6 +409,7 @@ vim.o.termguicolors = true
 vim.o.guicursor = 'n-c-v-i:block-blinkwait300-blinkon200-blinkoff150'
 
 vim.wo.scrolloff = 15
+vim.o.scrolloff = 15
 
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
