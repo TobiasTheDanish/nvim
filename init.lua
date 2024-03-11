@@ -98,7 +98,13 @@ require('lazy').setup({
           local api = require('nvim-tree.api')
 
           local function opts(desc)
-            return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+            return {
+              desc = 'nvim-tree: ' .. desc,
+              buffer = bufnr,
+              noremap = true,
+              silent = true,
+              nowait = true
+            }
           end
 
           -- BEGIN_DEFAULT_ON_ATTACH
@@ -407,8 +413,8 @@ vim.wo.scrolloff = 15
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
-vim.o.smartindent = true
 vim.o.autoindent = true
+vim.o.smartindent = true
 
 -- [[ Basic Keymaps ]]
 
