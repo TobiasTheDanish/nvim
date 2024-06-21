@@ -347,6 +347,9 @@ require('lazy').setup({
         end,
       },
     },
+    config = function()
+
+    end,
   },
 
   {
@@ -488,7 +491,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('telescope').setup {
   defaults = {
     mappings = {
+      n = {
+        ['<C-x>'] = require('telescope.actions').delete_buffer,
+      },
       i = {
+        ['<C-x>'] = require('telescope.actions').delete_buffer,
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
