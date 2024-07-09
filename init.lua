@@ -68,6 +68,8 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
+  "plugins",
+  "creativecreature/pulse",
 
   'mbbill/undotree',
 
@@ -170,11 +172,56 @@ require('lazy').setup({
     end,
   },
 
+
+  {
+    'nvimtools/none-ls.nvim',
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    config = function()
+      local null_ls = require("null-ls")
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.diagnostics.erb_lint,
+          null_ls.builtins.diagnostics.rubocop,
+          null_ls.builtins.formatting.rubocop,
+          require("none-ls.diagnostics.eslint_d"),
+        },
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format()
+              end,
+            })
+          end
+        end,
+      })
+
+      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+    end,
+  },
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    config = function()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      local lspconfig = require("lspconfig")
+      lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
+      })
+    end,
+
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
