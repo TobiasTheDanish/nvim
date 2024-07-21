@@ -60,6 +60,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.filetype.add { extension = { templ = 'templ' } }
+
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
@@ -216,14 +218,6 @@ require('lazy').setup({
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      local lspconfig = require 'lspconfig'
-      lspconfig.tailwindcss.setup {
-        capabilities = capabilities,
-      }
-    end,
 
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -699,6 +693,8 @@ end, 0)
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -774,12 +770,24 @@ require('mason-lspconfig').setup()
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+
 local servers = {
   clangd = {},
   gopls = {},
   rust_analyzer = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
+  htmx = { filetypes = { 'templ', 'html' } },
+  tailwindcss = {
+    filetypes = { 'templ', 'html', 'javascript', 'typescript', 'react' },
+    settings = {
+      tailwindCSS = {
+        includeLanguages = {
+          templ = 'html',
+        },
+      },
+    },
+  },
 
   lua_ls = {
     Lua = {
