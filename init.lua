@@ -78,9 +78,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-
   -- Nvim-tree:
   {
     'nvim-tree/nvim-tree.lua',
@@ -184,10 +181,14 @@ require('lazy').setup({
       null_ls.setup {
         sources = {
           null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.prettier,
+          -- null_ls.builtins.formatting.prettier,
           -- require 'none-ls.diagnostics.eslint_d',
         },
         on_attach = function(client, bufnr)
+          if client.name == 'ts_ls' then
+            return
+          end
+
           local format = true
           if client.supports_method 'textDocument/formatting' then
             vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
@@ -471,6 +472,7 @@ vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.autoindent = true
 vim.o.smartindent = true
+vim.o.expandtab = false
 
 -- [[ Basic Keymaps ]]
 
@@ -786,11 +788,11 @@ local servers = {
   clangd = {},
   gopls = {},
   rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   htmx = { filetypes = { 'templ', 'html' } },
   tailwindcss = {
-    filetypes = { 'templ', 'html', 'javascript', 'typescript', 'react', 'svelte' },
+    filetypes = { 'templ', 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte' },
     settings = {
       tailwindCSS = {
         includeLanguages = {
