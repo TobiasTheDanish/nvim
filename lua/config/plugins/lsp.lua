@@ -26,7 +26,7 @@ return {
         html = { filetypes = { 'html', 'twig', 'hbs' } },
         htmx = { filetypes = { 'templ', 'html' } },
         tailwindcss = {
-          filetypes = { 'templ', 'html', 'javascript', 'typescript', 'react', 'svelte' },
+          filetypes = { 'templ', 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte' },
           settings = {
             tailwindCSS = {
               includeLanguages = {

@@ -12,15 +12,25 @@ return {
         mode = 'v',
         desc = 'format selection',
       },
+      {
+        '<leader>fmt',
+        function()
+          require('conform').format { async = true, lsp_fallback = true }
+        end,
+        mode = 'n',
+        desc = 'format selection',
+      },
     },
     opts = {},
     config = function()
       require('conform').setup {
-        notify_on_error = false,
+        notify_on_error = true,
         formatters_by_ft = {
           lua = { 'stylua' },
           javascript = { 'prettierd', 'prettier', stop_after_first = true },
           typescript = { 'prettierd', 'prettier', stop_after_first = true },
+          javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+          typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
           go = { 'goimports', 'gopls' },
           sql = { 'sql_formatter' },
           templ = { 'templ' },
@@ -34,6 +44,7 @@ return {
             lsp_format_opt = 'fallback'
           end
           return {
+            bufnr = bufnr,
             timeout_ms = 500,
             lsp_format = lsp_format_opt,
           }
